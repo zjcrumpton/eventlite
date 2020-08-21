@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<div class="has-text-centered container is-fluid mt-5">
+  <div class="title is-3"> Upcoming </div>
+</div>
+
+<% Event.upcoming.each do | event | %>
+    <div class="container is-fluid">
+      <div class="card mt-4">
+        <p>Host:
+        <% if current_user.email = event.creator.email %>
+          Me
+        <% else %>
+          <%= event.creator.email %>
+        <% end %>
+        </p>
+        <p> <%= event.name %> </p>
+        <p> <%= event.description %> </p>
+        <p> <%= event.location %> </p>
+        <p> <%= event.time %> </p>
+      </div>
+    </div>
+<% end %>
+
+
+<div class="has-text-centered container is-fluid mt-5">
+  <div class="title is-3 mt-5"> Past Events </div>
+</div>
+
+<% Event.past.each do | event | %>
+    <div class="container is-fluid">
+      <div class="card mt-4">
+        <p>Host:
+        <% if current_user.email = event.creator.email %>
+          Me
+        <% else %>
+          <%= event.creator.email %>
+        <% end %>
+        </p>
+        <p> <%= event.name %> </p>
+        <p> <%= event.description %> </p>
+        <p> <%= event.location %> </p>
+        <p> <%= event.time %> </p>
+      </div>
+    </div>
+<% end %>
+
+
+<br>
+
+<%= link_to 'New Event', new_event_path %>
